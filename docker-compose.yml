@@ -1,0 +1,11 @@
+services:
+  api:
+    build: . # Constrói a imagem a partir do Dockerfile na raiz do projeto
+    container_name: gestao_escolar_api
+    ports:
+      - '8000:8000' # Mapeia a porta 8000 do container para a porta 8000 do host
+    volumes:
+      - .:/app
+    # O comando abaixo sobrescreve o CMD do Dockerfile para habilitar o --reload,
+    # que é ideal para o ambiente de desenvolvimento.
+    command: uvicorn app:app --host 0.0.0.0 --port 8000 --reload
